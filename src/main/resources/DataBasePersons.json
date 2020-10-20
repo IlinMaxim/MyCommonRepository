@@ -8,9 +8,9 @@
         }, {
             "id": "2",
             "name": "Petr",
-            "surname": "Pterov",
+            "surname": "Petrov",
             "age": "21",
-            "birthdate": "2020-02-02"
+            "birthdate": "2020-01-01"
         }
     ]
 }

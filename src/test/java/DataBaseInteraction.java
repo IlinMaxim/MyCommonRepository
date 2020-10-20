@@ -1,7 +1,7 @@
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Test;
 import org.assertj.core.api.SoftAssertions;
+import org.junit.Test;
 
 import java.io.File;
 import java.io.FileInputStream;
