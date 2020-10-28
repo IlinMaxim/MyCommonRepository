@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -29,13 +30,17 @@ public class DataBaseInteraction {
             "birthdate date\n" +
             ");";
 
-    static final String JSON_PATH = "C:\\Work\\autotest\\CinimexAutoTests\\src\\main\\resources\\DataBasePersons.json";
+    static final String JSON_PATH = "DataBasePersons.json";
     static final String SELECT = "SELECT * FROM milin";
+
 
     ArrayList<Person> personsList = new ArrayList<>();
 
     @Test
-    public void lllll() throws IOException, SQLException {
+
+    public void dataBaseTest() throws IOException, SQLException {
+
+
         dataBaseConnection(DB_URL, USER, PASS);
         createTable(CREATE_TABLE);
         readPersons(JSON_PATH);
@@ -63,7 +68,11 @@ public class DataBaseInteraction {
 
     public void readPersons(String jsonPath) throws SQLException, IOException {
         ObjectMapper mapper = new ObjectMapper();
-        JsonNode rootNode = mapper.readTree(new FileInputStream(new File(jsonPath)));
+        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+        InputStream is = classloader.getResourceAsStream(jsonPath);
+
+        JsonNode rootNode = mapper.readTree(is);
+
         JsonNode childNode = rootNode.get("data");
         Iterator<JsonNode> rootElements = childNode.elements();
 
